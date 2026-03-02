@@ -257,16 +257,20 @@ export async function handleToolsInvokeHttpRequest(
     // HTTP callers consume tool output directly; preserve raw media invoke payloads.
     allowMediaInvokeCommands: true,
     config: cfg,
-    pluginToolAllowlist: collectExplicitAllowlist([
-      profilePolicyWithAlsoAllow,
-      providerProfilePolicyWithAlsoAllow,
-      globalPolicy,
-      globalProviderPolicy,
-      agentPolicy,
-      agentProviderPolicy,
-      groupPolicy,
-      subagentPolicy,
-    ]),
+    pluginToolAllowlist: [
+      ...collectExplicitAllowlist([
+        profilePolicyWithAlsoAllow,
+        providerProfilePolicyWithAlsoAllow,
+        globalPolicy,
+        globalProviderPolicy,
+        agentPolicy,
+        agentProviderPolicy,
+        groupPolicy,
+        subagentPolicy,
+      ]),
+      ...(profileAlsoAllow ?? []),
+      ...(providerProfileAlsoAllow ?? []),
+    ],
   });
 
   const subagentFiltered = applyToolPolicyPipeline({
