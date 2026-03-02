@@ -253,16 +253,20 @@ export async function handleToolsInvokeHttpRequest(
     agentTo,
     agentThreadId,
     config: cfg,
-    pluginToolAllowlist: collectExplicitAllowlist([
-      profilePolicyWithAlsoAllow,
-      providerProfilePolicyWithAlsoAllow,
-      globalPolicy,
-      globalProviderPolicy,
-      agentPolicy,
-      agentProviderPolicy,
-      groupPolicy,
-      subagentPolicy,
-    ]),
+    pluginToolAllowlist: [
+      ...collectExplicitAllowlist([
+        profilePolicyWithAlsoAllow,
+        providerProfilePolicyWithAlsoAllow,
+        globalPolicy,
+        globalProviderPolicy,
+        agentPolicy,
+        agentProviderPolicy,
+        groupPolicy,
+        subagentPolicy,
+      ]),
+      ...(profileAlsoAllow ?? []),
+      ...(providerProfileAlsoAllow ?? []),
+    ],
   });
 
   const subagentFiltered = applyToolPolicyPipeline({
