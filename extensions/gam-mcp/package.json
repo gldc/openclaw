@@ -1,0 +1,11 @@
+{
+  "name": "@openclaw/gam-mcp",
+  "version": "2026.3.2",
+  "description": "GAM MCP approval flow — Telegram inline buttons for approve/deny of Google Admin proposals",
+  "type": "module",
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

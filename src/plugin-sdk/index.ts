@@ -672,3 +672,10 @@ export { loadWebMedia, type WebMediaResult } from "../web/media.js";
 
 // Security utilities
 export { redactSensitiveText } from "../logging/redact.js";
+
+// Telegram callback registry (for plugins that need inline-button callback handling)
+export {
+  registerTelegramCallbackPrefix,
+  type TelegramCallbackContext,
+  type TelegramCallbackHandler,
+} from "../telegram/callback-registry.js";

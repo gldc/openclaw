@@ -1,0 +1,25 @@
+{
+  "id": "gam-mcp",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": { "type": "boolean" },
+      "url": {
+        "type": "string",
+        "description": "URL of the gam-mcp server (e.g. http://dc1-1.local:9900)"
+      },
+      "approvalChannel": { "type": "string", "enum": ["telegram"], "default": "telegram" },
+      "approverIds": {
+        "type": "array",
+        "items": { "type": ["string", "number"] },
+        "description": "Telegram user IDs authorized to approve/deny"
+      },
+      "timeoutSeconds": { "type": "number", "default": 300 },
+      "telegramAccountId": {
+        "type": "string",
+        "description": "Telegram account ID for multi-account setups"
+      }
+    }
+  }
+}

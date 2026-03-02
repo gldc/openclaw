@@ -50,6 +50,7 @@ import {
   resolveTelegramGroupAllowFromContext,
 } from "./bot/helpers.js";
 import type { TelegramContext } from "./bot/types.js";
+import { dispatchTelegramCallback } from "./callback-registry.js";
 import { enforceTelegramDmAccess } from "./dm-access.js";
 import {
   evaluateTelegramGroupBaseAccess,
@@ -1274,6 +1275,19 @@ export const registerTelegramHandlers = ({
           return;
         }
 
+        return;
+      }
+
+      // Check plugin-registered callback handlers before fallthrough
+      const dispatched = await dispatchTelegramCallback({
+        data,
+        senderId: String(callback.from.id),
+        senderName: callback.from.first_name,
+        chatId: callbackMessage.chat.id,
+        messageId: callbackMessage.message_id,
+        editMessage: (text, params?) => editCallbackMessage(text, params),
+      });
+      if (dispatched) {
         return;
       }
 
