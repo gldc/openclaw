@@ -258,8 +258,8 @@ export async function handleToolsInvokeHttpRequest(
     allowMediaInvokeCommands: true,
     config: cfg,
     pluginToolAllowlist: collectExplicitAllowlist([
-      profilePolicy,
-      providerProfilePolicy,
+      profilePolicyWithAlsoAllow,
+      providerProfilePolicyWithAlsoAllow,
       globalPolicy,
       globalProviderPolicy,
       agentPolicy,
