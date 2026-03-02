@@ -67,6 +67,8 @@ export type OpenClawPluginToolContext = {
   requesterSenderId?: string;
   /** Whether the trusted sender is an owner. */
   senderIsOwner?: boolean;
+  /** Delivery target for the originating conversation (e.g. Telegram chat ID). */
+  messageTo?: string;
   sandboxed?: boolean;
 };
 
