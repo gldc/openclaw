@@ -254,8 +254,8 @@ export async function handleToolsInvokeHttpRequest(
     agentThreadId,
     config: cfg,
     pluginToolAllowlist: collectExplicitAllowlist([
-      profilePolicy,
-      providerProfilePolicy,
+      profilePolicyWithAlsoAllow,
+      providerProfilePolicyWithAlsoAllow,
       globalPolicy,
       globalProviderPolicy,
       agentPolicy,
